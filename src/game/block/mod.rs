@@ -45,9 +45,9 @@ fn blocks_system (
         let mut value_index = 0;
         for value in row.iter() {
             if let Some(be) = value {
-                // if row_index ==GAME_SIZE.1-1 && !be.moving {
-                //     todo!(); // Game over
-                // }
+                if row_index == 0 && !be.moving {
+                    panic!("Game over!")// Game over
+                }
                 if be.moving {
                     let valuebelow = match board.get(row_index + 1) {
                         Some(a) => a,
