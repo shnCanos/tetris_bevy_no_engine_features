@@ -15,7 +15,7 @@ impl Plugin for GamePlugin {
 }
 
 pub const BLOCK_SIZE: f32 = 20.;
-pub const GAME_SIZE: (usize, usize) = (5,5); // (5, 25);
+pub const GAME_SIZE: (usize, usize) = (5,10); // (5, 25);
 pub const GAME_SPEED: f32 = 1.;
 pub const DOWN_KEY_MULTIPLIER: f32 = 3.;
 

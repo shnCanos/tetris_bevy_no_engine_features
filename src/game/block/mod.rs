@@ -69,7 +69,6 @@ fn blocks_system (
     }
 
     if !should_move {
-        spawn_blocks(&mut board);
 
         // Clean up the board
         for row in board.iter_mut() {
@@ -83,6 +82,8 @@ fn blocks_system (
                 
             }
         }
+
+        spawn_blocks(&mut board);
 
         boardres.board = board;
         
