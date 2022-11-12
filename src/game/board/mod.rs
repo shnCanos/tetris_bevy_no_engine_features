@@ -2,7 +2,7 @@ use std::fmt::Debug;
 
 use bevy::prelude::*;
 
-use super::GAME_SIZE;
+use super::{GAME_SIZE, block::spawn_blocks};
 
 pub struct BoardPlugin;
 
@@ -40,11 +40,12 @@ fn create_board_system (
     mut commands: Commands,
 ) {
     // Spawn board
-    let mut board = [[None; GAME_SIZE.0]; GAME_SIZE.1];
-    board[1] = [Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }), Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None } ), None, None, None];
-    board[2] = [None, None, None, None, None];
-    //board[3] = [Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }),Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }),Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }),Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }),Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None })];
-    board[4] = [Some(BoardEntities { moving: false, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }), Some(BoardEntities { moving: false, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }), None, None, None];
+    let mut board: [[Option<BoardEntities>; GAME_SIZE.0]; GAME_SIZE.1] = [[None; GAME_SIZE.0]; GAME_SIZE.1];
+    // board[1] = [Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }), Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None } ), None, None, None];
+    // board[2] = [None, None, None, None, None];
+    // //board[3] = [Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }),Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }),Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }),Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }),Some(BoardEntities { moving: true, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None })];
+    // board[4] = [Some(BoardEntities { moving: false, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }), Some(BoardEntities { moving: false, color: Color::Rgba { red: 1., green: 1., blue: 1., alpha: 1. }, spawned: None }), None, None, None];
+    spawn_blocks(&mut board);
     commands.insert_resource(BoardRes { board });
 }
 

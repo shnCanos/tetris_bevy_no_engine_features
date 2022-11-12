@@ -28,8 +28,16 @@ impl Default for ScoreRes {
 }
 
 fn startup_system(
-    mut window: ResMut<Windows>
+    mut window: ResMut<Windows>,
+    mut commands: Commands,
 ) {
+    // Spawn camera
+    commands
+        .spawn_bundle(Camera2dBundle {
+            transform: Transform::from_xyz(0., 0., 10.),
+            ..Camera2dBundle::new_with_far(100.0)
+        });
+
     // Set window size
     let window = window.get_primary_mut().unwrap();
     window.set_resolution(GAME_SIZE.0 as f32, GAME_SIZE.1 as f32);
